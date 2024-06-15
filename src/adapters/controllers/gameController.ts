@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { GameService } from '../services/gameService';
+import { InitializeGame } from '../../core/usecases/initializeGame';
 
 export class GameController {
-  private gameService: GameService;
+  private initializeGame: InitializeGame;
 
-  constructor(gameService: GameService) {
-    this.gameService = gameService;
+  constructor(initializeGame: InitializeGame) {
+    this.initializeGame = initializeGame;
   }
 
   startGame = (req: Request, res: Response): void => {
@@ -16,7 +16,7 @@ export class GameController {
       return;
     }
 
-    const gameCards = this.gameService.initializeGame(cards_num, color);
+    const gameCards = this.initializeGame.execute(cards_num, color);
     res.json({ cards: gameCards });
   };
 }

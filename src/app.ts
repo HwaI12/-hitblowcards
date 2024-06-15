@@ -1,11 +1,2 @@
-import express from 'express';
-import gameRoutes from './routes/gameRoutes';
-import { errorHandler } from './middlewares/errorHandler';
-
-const app = express();
-
-app.use(express.json());
-app.use('/api/game', gameRoutes);
-app.use(errorHandler);
-
+import app from './frameworks/express/server';
 export default app;
